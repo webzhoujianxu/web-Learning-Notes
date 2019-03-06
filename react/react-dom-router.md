@@ -92,3 +92,58 @@ wtf? 最开始的时候有点蒙圈.因为在使用vue-router的时候都定义�
 
 这部分就是在定义路由 指定对应组件
 
+于是乎在代码尝试之前翻阅了一篇博客 最后用下列方式定义好了路由
+
+```javascript
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import {HashRouter} from 'react-router-dom';
+import * as serviceWorker from './serviceWorker';
+ReactDOM.render(
+    (<HashRouter>
+        <App />
+    </HashRouter>),
+    document.getElementById('root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();
+
+```
+
+```javascript
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import {HashRouter, Route, Switch} from 'react-router-dom';
+import Detail from './detail/detail';
+class App extends Component {
+  render() {
+    return (
+      <div className="App" id="root">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a href="/#/detail">aa</a>
+        </header>
+        <Switch>
+          {/*<Route exact path="/" component={App}/>*/}
+          <Route exact path="/detail" component={Detail}/>
+        </Switch>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+```
+
+以上是学习react的第一天 可能设置路由这块并不完善 期望下列学习中可以找到更好的办法
+
